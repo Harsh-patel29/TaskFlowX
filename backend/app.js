@@ -21,8 +21,10 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
 import userRoute from "./Routes/userRoute.js";
+import taskRoute from "./Routes/taskRoute.js";
 
 app.use("/api/v1/user", userRoute);
+app.use("/api/v1/task", taskRoute);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
