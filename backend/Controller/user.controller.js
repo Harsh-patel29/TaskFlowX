@@ -162,4 +162,13 @@ const logOutUser = AsyncHandler(async (req, res) => {
   }
 });
 
-export { registerUser, loginUser, newAccessToken, logOutUser };
+const loginDetail = AsyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id).select(
+    "-Password -refreshToken"
+  );
+  return res
+    .status(200)
+    .json(new ApiResponse(200, user, "User details Fetched Successfully"));
+});
+
+export { registerUser, loginUser, newAccessToken, logOutUser, loginDetail };
